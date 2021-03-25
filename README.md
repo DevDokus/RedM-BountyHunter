@@ -43,11 +43,11 @@ You can set the minimal and maximum rewards in the config.<br>
 
 ---
 # Disclaimer
-I have released v1.0.0, but this is not the final version.
-Currently only the PVE section of the menu works, the PVP
-section is still in development and will be released in
-a later update. Also I will still be building more features 
-into to this plugin, keep an eye on this repository to
+I have released v1.0.0, but this is not the final version.<br>
+Currently only the PVE section of the menu works, the PVP<br>
+section is still in development and will be released in<br>
+a later update. Also I will still be building more features <br>
+into to this plugin, keep an eye on this repository to<br>
 stay up to date with the latest version!
 
 ---
