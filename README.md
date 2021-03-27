@@ -57,5 +57,7 @@ stay up to date with the latest version!
   - [DevDokus Stores](https://github.com/DevDokus/Redm-Stores)
   - [DevDokus Usable Items](https://github.com/DevDokus/RedM-UsableItems)
   - [DevDokus Metabolism](https://github.com/DevDokus/RedM-Metabolism)
+  - [DevDokus BountyHunter](https://github.com/DevDokus/RedM-BountyHunter)
+  - [DevDokus PlayPiano](https://github.com/DevDokus/RedM-PlayPiano)
 
 ---
