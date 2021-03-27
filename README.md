@@ -1,5 +1,5 @@
 ---
-# RedM Bounty System (WIP) (v1.0.0)
+# RedM Bounty System (WIP) (v1.1.0)
 
 ---
 

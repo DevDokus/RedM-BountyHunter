@@ -1,8 +1,5 @@
 if NUI.Theme.Red then
-print("RED")
-
 	WarMenu = { }
-
 	WarMenu.debug = false
 
 

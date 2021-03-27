@@ -1,7 +1,5 @@
 if NUI.Theme.Dark then
-	print("DARK")
   WarMenu = { }
-
   WarMenu.debug = false
 
 

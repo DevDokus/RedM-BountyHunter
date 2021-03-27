@@ -5,7 +5,7 @@ description 'A customizable bounty hunting system for vorp'
 author 'DevDokus Github'
 fx_version "adamant"
 games {"rdr3"}
-version '1.0.0'
+version '1.1.0'
 
 shared_script 'config.lua'
 client_scripts { 'config.lua', '[Core]/[Client]/*.lua' }

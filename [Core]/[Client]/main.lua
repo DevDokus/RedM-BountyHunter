@@ -7,6 +7,7 @@ function Wait(args) Citizen.Wait(args) end
 local InRange = false
 local ActiveMenu = nil
 local MenuOpen = false
+local Location = nil
 
 RegisterNetEvent('DevDokus:BountyHunter:C:StartMission')
 --------------------------------------------------------------------------------
@@ -18,13 +19,25 @@ Citizen.CreateThread(function()
     local ped = PlayerPedId()
     local coords = GetEntityCoords(ped)
     for k, v in pairs(BountyBoards) do
+
       local dist = GetDistanceBetweenCoords(coords.x, coords.y, coords.z, v.x, v.y, v.z)
-      -- Set user if out of range
-      if (dist > 10) and InRange then InRange = false WarMenu.CloseMenu() end
-      -- Set user if in range
-      if (dist <= 10) and not InRange then
-        InRange = true
-        TriggerEvent('DevDokus:BountyHunter:C:StartMission')
+
+      if Location == nil and (dist <= 5) then Location = v.City end
+      if Location == v.City then
+
+        -- Set user if out of range
+        if (dist > 5) and InRange then
+          InRange = false
+          Location = nil
+          WarMenu.CloseMenu()
+        end
+
+        -- Set user if in range
+        if (dist <= 5) and not InRange then
+          InRange = true
+          Location = v.City
+          TriggerEvent('DevDokus:BountyHunter:C:StartMission')
+        end
       end
     end
   end
@@ -53,7 +66,7 @@ AddEventHandler('DevDokus:BountyHunter:C:StartMission', function()
         end
 
         if IsControlJustPressed(0, Keys['BACKSPACE']) then
-          if ActiveMenu == 'BountyMenu' then WarMenu.CloseMenu() ActiveMenu = nil MenuOpen = false
+          if ActiveMenu == 'BountyMenu' then WarMenu.CloseMenu() ActiveMenu = nil MenuOpen = false Location = nil
           elseif ActiveMenu == 'PVEMenu' then WarMenu.OpenMenu('BountyMenu') ActiveMenu = 'BountyMenu'
           elseif ActiveMenu == 'PVPMenu' then WarMenu.OpenMenu('BountyMenu') ActiveMenu = 'BountyMenu'
           end
@@ -104,14 +117,21 @@ function PVEMenu ()
   ActiveMenu = 'PVEMenu'
   local hunt = WarMenu.Button('Hunt a Bounty', '', 'Your daily basic needs')
   local payment = WarMenu.Button('Receive Payment', '', 'Other Items')
-  if hunt then TriggerEvent('DevDokus:BountyHunter:C:SetUpMission') end
+
+  if hunt then
+   Location = nil
+   TriggerServerEvent('DevDokus:BountyHunter:S:CheckJob')
+  end
+
   if payment and (TotalKilled > 0)then
     TriggerServerEvent('DevDokus:BountyHunter:S:PayDay', TotalKilled)
     TotalKilled = 0
+    Location = nil
     ActiveMenu = nil
     MenuOpen = false
     WarMenu.CloseMenu()
   elseif payment and (TotalKilled == 0) then
+    Location = nil
     Notify("You've no recorded bounty kills, partner!", 5000)
   end
   WarMenu.Display()
