@@ -28,7 +28,7 @@ local Weapons = {
 RegisterNetEvent('DevDokus:BountyHunter:C:SetUpMission')
 RegisterNetEvent('DevDokus:BountyHunter:C:ResetTotalKills')
 --------------------------------------------------------------------------------
-TotalKilled = 1
+TotalKilled = 0
 local ArrayBounties = {}
 local CreateNPC = {}
 local NPCx, NPCy, NPCz = 0, 0, 0
@@ -41,13 +41,12 @@ local SaveGuard = false
 AddEventHandler('DevDokus:BountyHunter:C:SetUpMission', function(_Job)
   -- Make sure this script does not execute twice.
   SaveGuard = true
-
-
+  
+  -- See if any job is required.
   local HasJob = false
   local NeedJob = false
-  -- See if any job is required.
   for k,v in pairs(Jobs) do
-    if v.Use then
+    if v.Use == true then
       NeedJob = true
     end
   end
